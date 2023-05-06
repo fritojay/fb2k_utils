@@ -284,7 +284,7 @@ void WriteFile( const fs::path& path, const std::u8string& content, bool write_b
         CloseHandle( hFile );
     } );
 
-    HANDLE hFileMapping = CreateFileMapping( hFile, nullptr, PAGE_READWRITE, 0, content.length() + offset, nullptr );
+    HANDLE hFileMapping = CreateFileMapping( hFile, nullptr, PAGE_READWRITE, 0, static_cast<int> ( content.length() + offset ), nullptr );
     qwr::error::CheckWinApi( hFileMapping, "CreateFileMapping" );
     final_action autoMapping( [hFileMapping] {
         CloseHandle( hFileMapping );
@@ -336,7 +336,7 @@ std::optional<fs::path> FileDialog( const std::wstring& title,
 
         if ( !filterSpec.empty() )
         {
-            hr = pfd->SetFileTypes( filterSpec.size(), filterSpec.data() );
+            hr = pfd->SetFileTypes( static_cast<int> ( filterSpec.size() ), filterSpec.data() );
             qwr::error::CheckHR( hr, "SetFileTypes" );
         }
 

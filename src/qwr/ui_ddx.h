@@ -70,7 +70,7 @@ public:
 private:
     T& value_;
     HWND hWnd_ = nullptr;
-    const int controlId_;
+    const signed int controlId_;
 };
 
 template <typename T>
@@ -84,14 +84,14 @@ public:
     static_assert( std::is_assignable_v<T&, std::u8string> );
 
 public:
-    UiDdx_TextEdit( T& value, int controlId )
+    UiDdx_TextEdit( T& value, signed int controlId )
         : value_( value )
         , controlId_( controlId )
     {
     }
     ~UiDdx_TextEdit() override = default;
 
-    bool IsMatchingId( int controlId ) const override
+    bool IsMatchingId( signed int controlId ) const override
     {
         return ( controlId == controlId_ );
     }
@@ -134,7 +134,7 @@ public:
 private:
     T& value_;
     HWND hWnd_ = nullptr;
-    const int controlId_;
+    const signed int controlId_;
 };
 
 template <typename T>
@@ -148,14 +148,14 @@ public:
     static_assert( std::is_assignable_v<T&, int> );
 
 public:
-    UiDdx_TextEditNum( T& value, int controlId )
+    UiDdx_TextEditNum( T& value, signed int controlId )
         : value_( value )
         , controlId_( controlId )
     {
     }
     ~UiDdx_TextEditNum() override = default;
 
-    bool IsMatchingId( int controlId ) const override
+    bool IsMatchingId( signed int controlId ) const override
     {
         return ( controlId == controlId_ );
     }
@@ -192,7 +192,7 @@ public:
 private:
     T& value_;
     HWND hWnd_ = nullptr;
-    const int controlId_;
+    const signed int controlId_;
 };
 
 template <typename T>
